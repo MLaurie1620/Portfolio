@@ -26,6 +26,27 @@ priorities, service integration, access configuration, validation, release
 decisions, and ongoing operation. The scope extends from the homeowner's
 interface to scheduled backend work and the procedures needed to troubleshoot it.
 
+## Development approach: agentic engineering
+
+I used AI agents throughout the project: writing code, researching technical and
+domain questions, troubleshooting, building and running tests, and developing
+the design. I am the sole human contributor and project owner, directing this
+work around the product's requirements and taking responsibility for its release
+decisions and ongoing operation.
+
+The development process combines agent-assisted implementation with recorded
+requirements, review notes, automated checks, and investigation of actual
+behavior. The repository shows repeated cycles of implementation, evaluation,
+correction, and regression coverage. Examples include adding plan/alert
+consistency checks, verifying running releases, and expanding replay from engine
+output to the messages a customer receives.
+
+AI assistance spans the entire development lifecycle. The skills described below
+reflect that working method: defining problems, directing technical work,
+evaluating evidence, integrating services, and maintaining the resulting system.
+The tests and operational checks provide evidence about specific behaviors;
+their limits are documented alongside the case studies.
+
 ## How the project developed
 
 These milestones come from dated Git commits. They show nearly six months of
@@ -47,6 +68,7 @@ establishes that work was recorded by May 15, not when planning first began.
 
 | Skill | Concrete work in the project |
 |---|---|
+| Agentic engineering | Using AI agents across code, research, troubleshooting, testing, and design, within an iterative development and validation process |
 | Systems integration | Connecting weather APIs, authentication, storage, scheduled jobs, and notification services |
 | Python automation | Scheduled processing, decision rules, replay tools, and operational checks |
 | Cloud administration | Hosting, functions, container jobs, scheduling, identity boundaries, and configuration dependencies |
