@@ -2,6 +2,8 @@
 
 **Systems administration · Automation · Service reliability**
 
+**[Visit the portfolio website →](https://mlaurie1620.github.io/Portfolio/)**
+
 This portfolio highlights practical systems work through my personal projects:
 automating recurring operations, enforcing access boundaries, verifying releases,
 and turning failures into repeatable checks.
@@ -44,3 +46,14 @@ The case study follows that development through dated milestones, difficult
 technical decisions, an architecture diagram, and an incident walkthrough. It
 connects the implementation to the skills involved and explains the limits of
 the checks.
+
+## Portfolio website
+
+The GitHub Pages site presents the project overview and a dedicated TurfTrigger
+case study. It also includes a high-level overview of a workplace project
+integrating vendor hardware movement records, validation, PostgreSQL on GCP VMs,
+and SAP APIs.
+
+Website source lives in `docs/`. It is a static HTML/CSS site with locally hosted
+fonts, no JavaScript dependency, and no analytics. GitHub Pages publishes the
+`master` branch's `/docs` directory.
