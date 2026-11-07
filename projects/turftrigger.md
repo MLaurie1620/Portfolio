@@ -4,10 +4,57 @@
 
 TurfTrigger is my personal lawn-care application. It converts weather data and
 regional rules into timing guidance, plans, and email/SMS workflows. This case
-study focuses on the operational design behind those features.
+study follows the work of growing an initial lookup into a service that needs
+consistent decisions, reliable scheduled processing, and verifiable releases.
+
+**Ownership:** Solo project; I am the sole project owner and human contributor.
+**Development history:** First recorded work on May 15, 2026; this case study
+covers milestones through November 5, 2026.
 
 **Stack:** React, Vite, Python, Firebase Hosting, Firebase Authentication,
 Firestore, Google Cloud Functions, Cloud Run, Cloud Scheduler, GitHub Actions.
+
+## The problem and my role
+
+The product addresses a practical question: when do local conditions support a
+lawn-care action? A ZIP-code lookup is the starting point. Turning the answer
+into useful ongoing guidance also requires regional rules, user-specific state,
+notification timing, and a way to recognize when the underlying system fails.
+
+As the sole project owner, I carry responsibility across requirements and
+priorities, service integration, access configuration, validation, release
+decisions, and ongoing operation. The scope extends from the homeowner's
+interface to scheduled backend work and the procedures needed to troubleshoot it.
+
+## How the project developed
+
+These milestones come from dated Git commits. They show nearly six months of
+recorded iteration; they are not an estimate of hours worked. The first commit
+establishes that work was recorded by May 15, not when planning first began.
+
+| Date | Recorded milestone | Work involved |
+|---|---|---|
+| May 15, 2026 | Initial commit and full-stack ZIP lookup, scheduled refresh, and database security | Connecting the interface, external data, backend processing, and storage |
+| May 17, 2026 | Google sign-in and App Check integration | Identity integration and request verification |
+| June 1, 2026 | Rename from LawnSignal to TurfTrigger and interface overhaul | Product presentation and coordinating the brand transition |
+| July 1–2, 2026 | Shared rule layer, seasonal alerts, year-long replay, and plan/alert consistency checks | Managing business-rule complexity and testing behavior across time |
+| August 7–10, 2026 | CI and deployment pipeline, completion heartbeats, security-rule tests, and post-deploy verification | Repeatable validation, observability, and release control |
+| September–October 2026 | Settled fall-window state and regional spring-model changes | Handling fluctuating inputs and evaluating regional evidence |
+| November 1, 2026 | Customer-delivery replay and an offline release gate | Following decisions through messages and simulated user responses |
+| November 5, 2026 | Duplicate scheduled-run protection | Investigating a concurrency risk and adding regression coverage |
+
+## Skills applied
+
+| Skill | Concrete work in the project |
+|---|---|
+| Systems integration | Connecting weather APIs, authentication, storage, scheduled jobs, and notification services |
+| Python automation | Scheduled processing, decision rules, replay tools, and operational checks |
+| Cloud administration | Hosting, functions, container jobs, scheduling, identity boundaries, and configuration dependencies |
+| Troubleshooting | Following failures across scheduler delivery, runtime revisions, hosted assets, and user-facing behavior |
+| Change management | Git history, automated validation, deployment verification, and a verified release baseline |
+| Access control | Owner-scoped records, protected control fields, administrative claims, and negative permission tests |
+| Technical judgment | Comparing model output with observations, documenting tradeoffs, and stating what tests do not prove |
+| Operational documentation | Maintaining deployment procedures, incident context, recovery dependencies, and remaining validation tasks |
 
 ## Architecture
 
@@ -35,6 +82,28 @@ flowchart TD
 The frontend presents decisions and records user actions. Python services own
 the decision rules and scheduled processing. Plans and alerts share rule
 functions, with replay checks to detect disagreement between surfaces.
+
+## Challenge: rules became more complex than a single threshold
+
+As the project expanded across regions, grass types, and seasons, the difficult
+part became keeping the displayed plan and the triggered advice consistent.
+A rule change could affect a schedule, a status display, an email, and a later
+follow-up. Separate versions of the same decision could drift apart.
+
+The implementation moved shared decision functions into a canonical rule layer.
+Historical replay then checked the relationships between plans and alerts, not
+just isolated function results. User actions and changing answers added another
+dimension: an application already recorded by the homeowner should affect what
+the system recommends next.
+
+Timing-model studies introduced a further constraint. Agreement with another
+model was not enough to establish actual local behavior. The recorded studies
+compared historical weather replays with dated observations and found that
+regional differences mattered. The resulting changes were regional, with
+explicit uncertainty, rather than a single nationwide threshold adjustment.
+
+**Skills demonstrated:** Requirements decomposition, shared-rule design,
+regression analysis, interpreting evidence, and managing uncertainty.
 
 ## Incident: a scheduled job ran twice
 
@@ -113,6 +182,11 @@ The design separates three questions:
 
 ## Change management: verify the deployed result
 
+One documented failure was a scheduled container job continuing to run stale
+code while other deployment targets had been updated. A successful deployment
+command and fresh-looking output were not sufficient evidence that every
+dependent workload had received the change.
+
 The project contains a shared preflight script, CI workflows, and post-deploy
 verification. Checks include container-image module completeness, application
 builds, Python suites, security-rule tests, and customer replay grading.
@@ -160,6 +234,12 @@ This write-up was checked against the application source at revision `725b6b8`.
 Source modules include `ops.py`, `test_run_lease.py`, `canary.py`,
 `verify_deploy.py`, `firestore.rules`, `customer_replay.py`, and `replay_grade.py`.
 The duplicate-run fix is recorded in commit `4d8a55d`.
+
+The initial commit is `bef39b4`, followed by the full-stack implementation in
+`086a006`, both dated May 15, 2026 in local history and GitHub's commit records.
+The June 1 rename is `d463af4`; the July rule/replay milestone is `a867438`;
+the August pipeline and deployment-verification milestones are `efa3bb9` and
+`54ab7ad`; the November customer replay starts at `3012069`.
 
 These identifiers provide provenance for a technical walkthrough. This
 portfolio contains a curated explanation and a simplified excerpt; it does not
