@@ -11,6 +11,14 @@ and turning failures into repeatable checks.
 [TurfTrigger](https://turftrigger.com) turns local weather and regional lawn-care
 rules into application timing, season plans, and notifications.
 
+**Solo project · Development recorded since May 15, 2026**
+
+I am the sole project owner and human contributor. My responsibility spans the
+product's requirements, its cloud services and integrations, validation, release
+decisions, and ongoing operation. Over nearly six months of recorded development,
+the project grew from a ZIP-code lookup into a service with regional decision
+rules, personalized plans, notifications, and operational checks.
+
 The application combines a React interface with Python services, Firebase, and
 Google Cloud. Its operational tooling covers scheduled processing, completion
 monitoring, release traceability, permission checks, and historical replay.
@@ -26,5 +34,7 @@ monitoring, release traceability, permission checks, and historical replay.
 
 **[Read the TurfTrigger systems case study →](projects/turftrigger.md)**
 
-The case study includes an architecture diagram, an incident walkthrough, a
-small implementation excerpt, and the tradeoffs behind the design.
+The case study follows that development through dated milestones, difficult
+technical decisions, an architecture diagram, and an incident walkthrough. It
+connects the implementation to the skills involved and explains the limits of
+the checks.
