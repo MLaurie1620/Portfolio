@@ -19,12 +19,18 @@ decisions, and ongoing operation. Over nearly six months of recorded development
 the project grew from a ZIP-code lookup into a service with regional decision
 rules, personalized plans, notifications, and operational checks.
 
+**Development approach: agentic engineering.** I used AI agents throughout
+coding, research, troubleshooting, testing, and design. My role is directing
+that work around the product's requirements and owning the resulting service,
+its decisions, and its operation.
+
 The application combines a React interface with Python services, Firebase, and
 Google Cloud. Its operational tooling covers scheduled processing, completion
 monitoring, release traceability, permission checks, and historical replay.
 
 | Area | Project example |
 |---|---|
+| Agentic engineering | Applying AI agents across development, supported by documented requirements, tests, replay checks, and deployment verification. |
 | Automation reliability | Atomic job-slot claims protect scheduled sweeps from duplicate invocations. |
 | Monitoring | Completion heartbeats expose jobs that never run or never finish successfully. |
 | Change management | Runtime release identifiers and served-asset checks verify deployment results. |
