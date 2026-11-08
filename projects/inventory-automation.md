@@ -2,52 +2,36 @@
 
 **Workplace · Team project**
 
-An automation suite connecting service-management tickets, vendor files, live
-asset data, database queues, and ERP processing.
+A workflow connecting service-management tickets, vendor files, live inventory
+data, and business systems.
 
 ## My contribution
 
-I built CSV intake and owned all validation logic, including PostgreSQL table
-integration for validation checks. I implemented write-backs to the ticketing
-system so submitters could see data-quality issues and requested inventory
-movements that conflicted with the authoritative system of record.
+I built file intake and validation, integrated database checks, and implemented
+ticket updates that explain data-quality issues and requested movements that
+conflict with the system of record.
 
-## Problem and workflow
+## Workflow
 
-Vendor inventory movements arrived as CSV or Excel files that required manual
-checks and individual asset lookups. Scheduled workers process ticket
-attachments, validate records, apply defined corrections, and return readable
-results to the original ticket.
+Scheduled workers process submitted files, check live inventory data, apply
+recorded corrections, and return actionable results to the ticket. Financial
+movements enter the appropriate business integration process; operational
+updates stay within the service platform.
 
-Financial movements are written as JSON to ERP integration folders. Other
-transactions use a platform-only destination. PostgreSQL queues on GCP VMs
-are checked for duplicates and conflicting records already in flight.
+## Engineering focus
 
-## What makes it useful
+- **Data integrity:** business rules check formats, identifiers, product mappings,
+  locations, asset state, and the requested transaction.
+- **Useful feedback:** early structural checks, batched lookups, and line-level
+  reporting help submitters resolve issues together.
+- **Recoverable operation:** rate limits, timeouts, retries, token refresh, and
+  processing locks support reliable scheduled work.
+- **Queue controls:** conflicting requests are reported, duplicates are skipped,
+  and unavailable dependencies preserve a retry path.
+- **Auditability:** corrections, outcomes, and failures are recorded in logs and
+  ticket reports.
 
-- **20+ documented validation rules:** file structure, identifiers, SKU mappings,
-  stockrooms, lifecycle state, and transaction requirements.
-- **Efficient feedback:** early header rejection, batched lookups, and all
-  failures reported together with line numbers.
-- **Visible corrections:** normalization and defined data corrections are logged
-  in the validation report.
-- **Recoverable processing:** rate limits, timeouts, retry backoff, token refresh,
-  and per-ticket locks support parallel workers.
-- **Queue-aware routing:** unavailable databases leave tickets in progress for
-  retry; conflicts are reported and identical in-flight records are skipped.
-- **Controlled operation:** dry runs, local SQLite routing tests, environment
-  configuration, and explicit flags for live purchase-order sending.
-
-## Related tools
-
-| Tool | Purpose |
-|---|---|
-| Bulk asset search | Return device, model, and location details as a CSV attached to the ticket. |
-| Physical inventory | Validate uploaded counts, update the platform, and return per-row results. |
-| Vendor purchase orders | Transform orders, authenticate and send through vendor APIs, and write confirmation to the platform. |
-
-The project demonstrates service-management integration, REST APIs, data
-validation, database queue controls, scheduled automation, troubleshooting,
-and auditability.
+Related tools support bulk asset lookup, physical inventory updates, and vendor
+purchase-order integrations.
 
 [View the case study →](https://mlaurie1620.github.io/Portfolio/inventory.html)

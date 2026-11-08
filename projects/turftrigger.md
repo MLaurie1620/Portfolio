@@ -1,297 +1,83 @@
-# TurfTrigger: operating a weather-driven application
+# TurfTrigger — Operating a Weather-Driven Application
 
 [← Portfolio](../README.md) · [Application](https://turftrigger.com)
 
-TurfTrigger is my personal lawn-care application. It converts weather data and
-regional rules into timing guidance, plans, and SMS alerts, with email delivery
-also supported. This case
-study follows the work of growing an initial lookup into a service that needs
-consistent decisions, reliable scheduled processing, and verifiable releases.
+**Personal project · Sole project owner and human contributor**
 
-**Ownership:** Solo project; I am the sole project owner and human contributor.
-**Development history:** First recorded work on May 15, 2026; this case study
-covers milestones through November 5, 2026.
+TurfTrigger turns local conditions and regional rules into personalized plans
+and SMS alerts, with email delivery also supported.
 
-**Stack:** React, Vite, Python, Firebase Hosting, Firebase Authentication,
-Firestore, Google Cloud Functions, Cloud Run, Cloud Scheduler, GitHub Actions.
+## My role and approach
 
-[View the live-product screenshot gallery →](https://mlaurie1620.github.io/Portfolio/turftrigger.html#product)
+I own the requirements, service integration, validation, release decisions, and
+ongoing operation. I used AI agents throughout coding, research, troubleshooting,
+testing, and design, directing the work around the product's needs.
 
-## The problem and my role
-
-The product addresses a practical question: when do local conditions support a
-lawn-care action? A ZIP-code lookup is the starting point. Turning the answer
-into useful ongoing guidance also requires regional rules, user-specific state,
-notification timing, and a way to recognize when the underlying system fails.
-
-As the sole project owner, I carry responsibility across requirements and
-priorities, service integration, access configuration, validation, release
-decisions, and ongoing operation. The scope extends from the homeowner's
-interface to scheduled backend work and the procedures needed to troubleshoot it.
-
-## Development approach: agentic engineering
-
-I used AI agents throughout the project: writing code, researching technical and
-domain questions, troubleshooting, building and running tests, and developing
-the design. I am the sole human contributor and project owner, directing this
-work around the product's requirements and taking responsibility for its release
-decisions and ongoing operation.
-
-The development process combines agent-assisted implementation with recorded
-requirements, review notes, automated checks, and investigation of actual
-behavior. The repository shows repeated cycles of implementation, evaluation,
-correction, and regression coverage. Examples include adding plan/alert
-consistency checks, verifying running releases, and expanding replay from engine
-output to the messages a customer receives.
-
-AI assistance spans the entire development lifecycle. The skills described below
-reflect that working method: defining problems, directing technical work,
-evaluating evidence, integrating services, and maintaining the resulting system.
-The tests and operational checks provide evidence about specific behaviors;
-their limits are documented alongside the case studies.
+Development combines documented requirements, review notes, automated checks,
+and investigation of actual behavior.
 
 ## How the project developed
 
-These milestones come from dated Git commits. They show nearly six months of
-recorded iteration; they are not an estimate of hours worked. The first commit
-establishes that work was recorded by May 15, not when planning first began.
+The project grew from a local lookup into a connected service through ongoing
+iteration:
 
-| Date | Recorded milestone | Work involved |
-|---|---|---|
-| May 15, 2026 | Initial commit and full-stack ZIP lookup, scheduled refresh, and database security | Connecting the interface, external data, backend processing, and storage |
-| May 17, 2026 | Google sign-in and App Check integration | Identity integration and request verification |
-| June 1, 2026 | Rename from LawnSignal to TurfTrigger and interface overhaul | Product presentation and coordinating the brand transition |
-| July 1–2, 2026 | Shared rule layer, seasonal alerts, year-long replay, and plan/alert consistency checks | Managing business-rule complexity and testing behavior across time |
-| August 7–10, 2026 | CI and deployment pipeline, completion heartbeats, security-rule tests, and post-deploy verification | Repeatable validation, observability, and release control |
-| September–October 2026 | Settled fall-window state and regional spring-model changes | Handling fluctuating inputs and evaluating regional evidence |
-| November 1, 2026 | Customer-delivery replay and an offline release gate | Following decisions through messages and simulated user responses |
-| November 5, 2026 | Duplicate scheduled-run protection | Investigating a concurrency risk and adding regression coverage |
-
-## Skills applied
-
-| Skill | Concrete work in the project |
-|---|---|
-| Agentic engineering | Using AI agents across code, research, troubleshooting, testing, and design, within an iterative development and validation process |
-| Systems integration | Connecting weather APIs, authentication, storage, scheduled jobs, and notification services |
-| Python automation | Scheduled processing, decision rules, replay tools, and operational checks |
-| Cloud administration | Hosting, functions, container jobs, scheduling, identity boundaries, and configuration dependencies |
-| Troubleshooting | Following failures across scheduler delivery, runtime revisions, hosted assets, and user-facing behavior |
-| Change management | Git history, automated validation, deployment verification, and a verified release baseline |
-| Access control | Owner-scoped records, protected control fields, administrative claims, and negative permission tests |
-| Technical judgment | Comparing model output with observations, documenting tradeoffs, and stating what tests do not prove |
-| Operational documentation | Maintaining deployment procedures, incident context, recovery dependencies, and remaining validation tasks |
+- **Foundation:** interface, external data, identity, storage, and scheduled updates.
+- **Consistency:** shared rules and checks that plans agree with alerts.
+- **Operations:** release verification, completion monitoring, and permission tests.
+- **Validation:** replay of decisions, messages, and simulated user responses.
+- **Refinement:** incident investigation and focused regression coverage.
 
 ## The knowledge behind SMS alerts
 
-The system combines structured lawn-care data with explicit Python rules. At
-runtime, the engine evaluates local weather, region, grass type, user preferences,
-and recorded lawn activity to determine which alerts are due. SMS delivery then
-applies channel-specific checks, including consent, local delivery time, and
-delivery state.
+The engine combines local conditions, regional context, user preferences, and
+recorded activity with shared decision rules.
 
-The supporting corpus, counted from the repository on November 7, 2026, includes:
+| Supporting data | Purpose |
+|---|---|
+| Regional profiles | Inform advice using grass characteristics and local conditions. |
+| Seasonal plans | Supply structured, climate-appropriate plan content. |
+| Product information | Support product-selection surfaces. |
+| Safety references | Support regression checks on the advice. |
 
-| Dataset | Size | Role in the system |
-|---|---|---|
-| Grass profiles | **9** | Grass characteristics used by the engine, including season type and temperature thresholds |
-| Grass-by-zone plans | **48**, spanning USDA zones **3–10** | Baseline content for the plan builder; plan/alert consistency is checked by replay |
-| Product catalog | **265 products**, with **65 active-ingredient records** | Product information and supporting product-selection surfaces; not a set of 265 alert triggers |
-| Pesticide safety references | **25 records** | Regression checks on products and ingredients named in alert messages and the grasses those messages can reach |
+These datasets serve different roles. Profiles and rules inform live decisions;
+plan content, product information, and safety checks support other parts of the
+experience. SMS delivery also checks consent, local timing, and delivery state.
 
-The counts describe different parts of the knowledge base and are not added
-together as a document total. The safety references are consulted by tests;
-live firing decisions come from the shared rule layer and runtime inputs.
-This separation keeps the source of each decision traceable.
+## Keeping decisions consistent
 
-Counts were checked in `grass_profiles.json`, `free_templates.json`,
-`catalogData.json`, and `chemical_safety_pesticides.json`; their roles were checked
-against the engine, plan builder, and product-safety tests.
+A rule change can affect a plan, a display, a message, and a follow-up. Shared
+decision functions reduce drift, while historical replay checks how those
+surfaces behave together and respond to recorded user activity.
 
-## Architecture
+## Protecting scheduled work
 
-```mermaid
-flowchart TD
-    Browser[React application] --> Hosting[Firebase Hosting]
-    Browser --> Auth[Firebase Authentication]
-    Browser --> API[Python API functions]
-    Browser -->|Rule-controlled access| DB[(Firestore)]
-    Weather[External weather data] --> Refresh[Scheduled weather refresh]
-    Scheduler[Cloud Scheduler] --> Refresh
-    Scheduler --> Engine[Rules, plans and alerts]
-    Scheduler --> Delivery[SMS alerts and email delivery]
-    Refresh --> DB
-    API --> DB
-    DB --> Engine
-    Engine --> DB
-    DB --> Delivery
-    Refresh --> Health[Completion heartbeats]
-    Engine --> Health
-    Delivery --> Health
-    Health --> Canary[Health checks]
-```
+A scheduler retry exposed a duplicate-delivery risk during startup. An atomic
+claim now reserves a job's time slot so competing workers skip it. A raised
+failure attempts to release the claim for retry.
 
-The frontend presents decisions and records user actions. Python services own
-the decision rules and scheduled processing. Plans and alerts share rule
-functions, with replay checks to detect disagreement between surfaces.
+Regression checks cover duplicate suppression, independent work, and retry
+behavior. Partial delivery and unexpected termination still require recovery
+procedures and recipient-level state.
 
-## Challenge: rules became more complex than a single threshold
+## Monitoring and release verification
 
-As the project expanded across regions, grass types, and seasons, the difficult
-part became keeping the displayed plan and the triggered advice consistent.
-A rule change could affect a schedule, a status display, an email, and a later
-follow-up. Separate versions of the same decision could drift apart.
+Scheduled stages record successful completion. Health checks detect missing or
+stale signals, covering failures that error logs alone can miss.
 
-The implementation moved shared decision functions into a canonical rule layer.
-Historical replay then checked the relationships between plans and alerts, not
-just isolated function results. User actions and changing answers added another
-dimension: an application already recorded by the homeowner should affect what
-the system recommends next.
+Runtime release identifiers and hosted-content checks help verify what actually
+runs after deployment. The release baseline advances only after verification
+succeeds.
 
-Timing-model studies introduced a further constraint. Agreement with another
-model was not enough to establish actual local behavior. The recorded studies
-compared historical weather replays with dated observations and found that
-regional differences mattered. The resulting changes were regional, with
-explicit uncertainty, rather than a single nationwide threshold adjustment.
+## Access, recovery, and testing
 
-**Skills demonstrated:** Requirements decomposition, shared-rule design,
-regression analysis, interpreting evidence, and managing uncertainty.
+Data rules distinguish public information, owner-scoped records, administrative
+access, and server-only fields. Permission tests check those boundaries.
 
-## Incident: a scheduled job ran twice
+Recovery documentation records backup and configuration dependencies. A complete
+restore exercise remains an outstanding validation task.
 
-On November 5, 2026, the project incident record documented a connection failure
-during a cold start. The scheduler transport resent the request, and two
-window-alert sweeps ran 23 seconds apart. Nothing was due that day, so this was
-a discovered duplicate-delivery risk rather than a confirmed duplicate-email
-incident.
+Workflow replay follows decisions through delivery and simulated user actions.
+Its limits are documented: historical hindsight differs from a real forecast,
+and internal consistency does not establish field accuracy.
 
-The vulnerable sequence was simple: read delivery state, send a message, then
-record completion. Two sweeps could both read the old state before either wrote
-the new state. Disabling configured retries did not eliminate the duplicate
-invocation observed here.
-
-### Fix
-
-The sweep now claims a document keyed by job and time slot before starting work.
-An atomic create allows one invocation to win. A duplicate returns a successful
-skip. If the winning sweep raises an exception, it attempts to release the claim
-so a subsequent invocation can retry.
-
-Simplified excerpt of the implemented control flow:
-
-```python
-def run_once_for_slot(claim, sweep):
-    try:
-        claim.create()             # Atomic: fails if already claimed.
-    except AlreadyExists:
-        return {"skipped": "duplicate_run"}, 200
-
-    try:
-        return sweep()
-    except Exception:
-        try:
-            claim.delete()         # Allow a retry after a raised failure.
-        except Exception:
-            log_claim_release_failure()
-        raise
-```
-
-This excerpt omits the storage adapter, metadata, and logging implementation.
-The application implementation is `ops.once_per_slot`.
-
-### Verification and limits
-
-The focused regression suite passed on November 6, 2026. It checks that:
-
-- A second invocation in the same slot skips without running the sweep.
-- A different job or slot can run independently.
-- A raised failure releases the claim and permits a retry.
-
-These are in-memory regression tests, not a distributed load test. The claim
-protects sweep execution; it does not establish exactly-once delivery by an
-external email service. A hard termination can leave a claim behind, and a
-failure after partial delivery still requires attention to recipient-level
-delivery state.
-
-**Operational lesson:** Design for duplicate invocations, distinguish execution
-from external side effects, and document how to recover from partial failures.
-
-## Monitoring: detecting missing work
-
-Error logs cannot report a job that never starts. TurfTrigger's scheduled stages
-record a heartbeat after successful completion. Health checks look for missing
-or stale heartbeats, with thresholds based on the expected cadence.
-
-The heartbeat also includes the release identifier read from the running
-revision's environment. This helps distinguish a fresh result produced by stale
-code from one produced by the intended release.
-
-The design separates three questions:
-
-1. Was a deployment requested?
-2. Is the expected revision running?
-3. Did the expected work complete successfully?
-
-## Change management: verify the deployed result
-
-One documented failure was a scheduled container job continuing to run stale
-code while other deployment targets had been updated. A successful deployment
-command and fresh-looking output were not sufficient evidence that every
-dependent workload had received the change.
-
-The project contains a shared preflight script, CI workflows, and post-deploy
-verification. Checks include container-image module completeness, application
-builds, Python suites, security-rule tests, and customer replay grading.
-
-Post-deploy verification checks runtime release identifiers and active revision
-state. For a shared hosted data asset, it compares the served bytes with the
-release commit. This catches a failure that a status-code check can miss: a
-single-page application fallback can return HTTP 200 and HTML for a missing
-JSON asset.
-
-The deployment marker advances only after verification succeeds, so later
-change detection does not treat an unverified release as the deployed baseline.
-
-## Access boundaries and recovery
-
-Firestore rules distinguish public read-only data, owner-scoped account data,
-administrative access, and server-only records. Sensitive control fields are
-protected even when other fields on the same user record are writable.
-
-For example, clients cannot rewrite the state that tracks SMS check-ins or
-one-time welcome delivery. These restrictions are enforced at the data layer,
-with emulator-based security-rule tests in CI.
-
-The project also documents backup jobs and recovery dependencies, including
-configuration that cannot be reconstructed from source alone. A complete
-end-to-end restore exercise remains outstanding. Recovery time and recovery
-completeness therefore remain unmeasured, rather than assumed from the
-existence of backups.
-
-## Testing a workflow through time
-
-Historical-weather replay exercises the decision engine across a full season.
-A separate customer replay drives production processing entry points through
-injected providers and captures messages and simulated user actions. It can
-distinguish an alert being generated from its instructions being delivered.
-
-The offline release gate uses committed weather fixtures to check for problems
-such as missing instructions, contradictory messages, and repeated application
-advice. Simulation results have explicit limits: hindsight weather differs from
-an issued forecast, and internal consistency does not prove field accuracy.
-
-## Evidence behind this case study
-
-This write-up was checked against the application source at revision `725b6b8`.
-Source modules include `ops.py`, `test_run_lease.py`, `canary.py`,
-`verify_deploy.py`, `firestore.rules`, `customer_replay.py`, and `replay_grade.py`.
-The duplicate-run fix is recorded in commit `4d8a55d`.
-
-The initial commit is `bef39b4`, followed by the full-stack implementation in
-`086a006`, both dated May 15, 2026 in local history and GitHub's commit records.
-The June 1 rename is `d463af4`; the July rule/replay milestone is `a867438`;
-the August pipeline and deployment-verification milestones are `efa3bb9` and
-`54ab7ad`; the November customer replay starts at `3012069`.
-
-These identifiers provide provenance for a technical walkthrough. This
-portfolio contains a curated explanation and a simplified excerpt; it does not
-require access to the application's source repository.
+[View the product screenshots and case study →](https://mlaurie1620.github.io/Portfolio/turftrigger.html)

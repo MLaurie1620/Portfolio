@@ -276,3 +276,10 @@ body{background:white;color:black}
 .case-layout{display:block}
 .case-body{max-width:none}
 }
+
+/* Qualitative knowledge-base coverage. */
+.knowledge-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-block:25px}
+.knowledge-list article{background:var(--wash);padding:20px;border-top:1px solid var(--accent)}
+.case-body .knowledge-list h3{margin:0 0 10px;font-size:24px}
+.case-body .knowledge-list p{font-size:13px;line-height:1.8}
+@media(max-width:760px){.knowledge-list{grid-template-columns:1fr}}
