@@ -5,6 +5,13 @@
 An automation suite connecting service-management tickets, vendor files, live
 asset data, database queues, and ERP processing.
 
+## My contribution
+
+I built CSV intake and owned all validation logic, including PostgreSQL table
+integration for validation checks. I implemented write-backs to the ticketing
+system so submitters could see data-quality issues and requested inventory
+movements that conflicted with the authoritative system of record.
+
 ## Problem and workflow
 
 Vendor inventory movements arrived as CSV or Excel files that required manual

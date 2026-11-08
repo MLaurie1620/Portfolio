@@ -17,6 +17,11 @@ service-management tickets, validates them against live asset data, and routes
 financial movements to ERP integration folders. Results, corrections, and
 line-level errors are returned to the original ticket.
 
+**My contribution:** I built the CSV intake, owned all validation logic,
+integrated PostgreSQL tables into the checks, and implemented ticket write-backs
+to explain data issues and inventory movements that conflict with the system of
+record.
+
 - **20+ documented validation rules** covering formats, identifiers, catalog
   mappings, stockrooms, lifecycle state, and transaction requirements.
 - **Reliable processing:** batched lookups, shared API rate limits, retry backoff,
