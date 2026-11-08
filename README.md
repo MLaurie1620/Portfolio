@@ -31,6 +31,20 @@ record.
 
 [Read the integration case study →](projects/inventory-automation.md)
 
+## FundTrace — AI Audit Triage
+
+**Workplace · Applied AI · Sole creator and project owner**
+
+I created an AI-assisted workflow that shortlists vendor-funding email
+conversations, quotes supporting evidence, and preserves auditor corrections. Development and
+testing covered seven vendor archives.
+
+A detailed single-vendor evaluation shortlisted **506 of 1,498 conversations**
+and found **162 of 198 relevant conversations (82% recall)**. The case study
+explains the miss rate, review workload, and limits of that benchmark.
+
+[Read the AI workflow case study →](projects/fundtrace.md)
+
 ## TurfTrigger
 
 **Personal project · Sole project owner and human contributor · Since May 2026**

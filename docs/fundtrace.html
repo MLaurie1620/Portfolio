@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="FundTrace: AI-assisted vendor-funding audit triage with evidence quotations, human review, and measured evaluation of recall and review workload.">
+  <meta name="theme-color" content="#143c32">
+  <title>FundTrace — AI Audit Triage | Matt Laurie</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap"><a class="identity" href="./" aria-label="Matt Laurie, home"><span class="monogram" aria-hidden="true">ML<span>↗</span></span><span>Matt Laurie<span class="identity-sub">Systems & automation</span></span></a><nav aria-label="Main navigation"><a href="./#projects">Selected work</a><a href="./#approach">Approach</a><a class="nav-github" href="https://github.com/MLaurie1620/Portfolio">GitHub <span aria-hidden="true">↗</span></a></nav></header>
+  <main id="main">
+    <div class="case-hero wrap">
+      <a class="back-link" href="./#projects">← Back to selected work</a>
+      <h1>FundTrace.<br><span class="serif-accent">A shorter path to evidence.</span></h1>
+      <p class="case-intro">An AI-assisted workflow that shortlists vendor-funding email conversations and quotes supporting evidence for auditor review.</p>
+      <dl class="case-meta"><div><dt>My role</dt><dd>Sole creator · Project owner</dd></div><div><dt>Development coverage</dt><dd>Seven vendor email archives</dd></div><div><dt>Focus</dt><dd>Evidence traceability · Evaluation</dd></div></dl>
+    </div>
+    <div class="case-layout wrap">
+      <aside class="case-nav" aria-label="On this page"><p>Inside the project</p><a href="#workflow">Review workflow</a><a href="#evaluation">Evaluation approach</a><a href="#results">Measured tradeoffs</a><a href="#operations">Operational lessons</a></aside>
+      <div class="case-body">
+        <section id="workflow"><p class="eyebrow">01 / My contribution</p><h2>I created the end-to-end review workflow.</h2><p>I am FundTrace’s sole creator and project owner, responsible for archive processing, AI scoring, evidence output, and evaluation. The tool helps auditors find evidence of vendor rebates, allowances, and funding agreements in large email archives.</p><p>FundTrace removes exact duplicates, groups replies into conversations, and uses AI to score each exchange. Shortlisted conversations include a summary and supporting quotations. Auditors make the final decision, and their corrections are retained.</p><div class="integration-flow" aria-label="FundTrace workflow"><span>Email archive</span><span aria-hidden="true">↓</span><span>Deduplicate + group conversations</span><span aria-hidden="true">↓</span><span>AI scoring + evidence quotations</span><span aria-hidden="true">↓</span><span>Auditor review + recorded corrections</span></div></section>
+        <section id="evaluation"><p class="eyebrow">02 / Evaluation discipline</p><h2>Measure the workflow that people receive.</h2><p>Development and testing covered seven vendor archives. Separate scorer, reviewer, and optimizer model calls examined mistakes and proposed instruction changes. Vendor-level test separation exposed generalization problems that same-vendor testing had hidden.</p><p>Experiments compared revised instructions and input context against the deployed baseline. The evaluation tracks both relevant conversations found and the review workload created, so a larger shortlist cannot pass as an unqualified improvement.</p></section>
+        <section id="results"><p class="eyebrow">03 / Reported benchmark</p><h2>Less to read, with a measurable miss rate.</h2><dl class="corpus-grid benchmark-grid"><div><dt>Conversations</dt><dd>1,498</dd><dd class="corpus-detail">In the evaluated vendor archive.</dd></div><div><dt>Shortlisted</dt><dd>506</dd><dd class="corpus-detail">34% of conversations sent for review.</dd></div><div><dt>Relevant found</dt><dd>162 / 198</dd><dd class="corpus-detail">82% recall; 36 relevant conversations missed.</dd></div></dl><p>On the same archive, providing full email text increased recall to 95% while flagging 49% of conversations. Larger instruction sets mainly shifted the balance between recall and reading workload, without a clear overall improvement.</p><p class="corpus-note">October 2026 internal evaluation, reported in the project summary. These results describe one vendor benchmark, which was later reused for development. Fresh vendor testing is needed to assess broader performance; review-time savings remain illustrative.</p></section>
+        <section id="operations"><p class="eyebrow">04 / Engineering judgment</p><h2>Make failures visible before tuning further.</h2><p>Evaluation exposed silent failures in the reviewer stage and zero scores being stored as blank values. Both were corrected, with failures recorded explicitly.</p><p>The next validation step is a shared relevance rubric, blinded auditor labeling, and testing on fresh vendors. That separates ambiguous labels, missing context, and model error before further optimization.</p><div class="callout"><p><strong>Skills demonstrated by the project:</strong> Workflow automation, AI orchestration, evidence traceability, evaluation design, failure observability, and communicating operational tradeoffs.</p></div></section>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer wrap"><span>Matt Laurie <span class="footer-muted">/ Systems & automation</span></span><a href="./">Back to portfolio <span aria-hidden="true">↗</span></a><span class="footer-muted">© 2026</span></footer>
+</body>
+</html>
