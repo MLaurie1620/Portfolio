@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A workplace automation suite connecting service-management tickets, vendor inventory files, live asset validation, database queues, and ERP routing.">
+  <meta name="theme-color" content="#143c32">
+  <title>Design C · Inventory & Vendor Automation — Matt Laurie</title>
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <link rel="stylesheet" href="../concepts.css">
+</head>
+<body class="concept-blueprint">
+<div class="concept-bar"><span>Design C / Blueprint</span><nav aria-label="Compare designs"><a href="../systems/inventory.html">A<span> / Systems</span></a><a href="../editorial/inventory.html">B<span> / Editorial</span></a><a href="../blueprint/inventory.html" aria-current="page">C<span> / Blueprint</span></a><a class="all-designs" href="../">Compare all ↗</a></nav></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap"><a class="identity" href="./" aria-label="Matt Laurie, home"><span class="monogram" aria-hidden="true">ML<span>↗</span></span><span>Matt Laurie<span class="identity-sub">Systems & automation</span></span></a><nav aria-label="Main navigation"><a href="./#projects">Selected work</a><a href="./#approach">Approach</a><a class="nav-github" href="https://github.com/MLaurie1620/Portfolio">GitHub <span aria-hidden="true">↗</span></a></nav></header>
+  <main id="main">
+    <div class="case-hero wrap">
+      <a class="back-link" href="./#projects">← Back to selected work</a>
+      <h1>Inventory automation.<br><span class="serif-accent">From ticket to ERP.</span></h1>
+      <p class="case-intro">A workplace automation suite that validates vendor files against live asset data, routes inventory movements, and reports results on the originating ticket.</p>
+      <dl class="case-meta"><div><dt>Context</dt><dd>Workplace · Team project</dd></div><div><dt>My ownership</dt><dd>CSV intake · Validation · Ticket feedback</dd></div><div><dt>Focus</dt><dd>Data integrity · Recoverable operations</dd></div></dl>
+    </div>
+    <div class="case-layout wrap">
+      <aside class="case-nav" aria-label="On this page"><p>Inside the project</p><a href="#contribution">My contribution</a><a href="#workflow">Workflow</a><a href="#validation">Validation</a><a href="#operations">Reliable operation</a><a href="#tools">Related tools</a></aside>
+      <div class="case-body">
+        <section id="contribution"><p class="eyebrow">My contribution</p><h2>I built the validation and feedback layer.</h2><p>I owned all validation logic, CSV intake, and PostgreSQL table integration for validation checks. I also implemented write-backs to the ticketing system so submitters could see data-quality issues and requested inventory movements that conflicted with the authoritative system of record.</p></section>
+        <section id="workflow"><p class="eyebrow">01 / Workflow integration</p><h2>Make the ticket the audit trail.</h2><p>Vendor CSV and Excel files previously required manual checks and individual asset lookups. Scheduled workers process ticket attachments, validate records against live platform data, and return a readable result with line-level errors and logged corrections.</p><div class="integration-flow" aria-label="Processing flow"><span>Ticket + attachment</span><span aria-hidden="true">↓</span><span>Validation + live asset lookups</span><span aria-hidden="true">↓</span><span>ERP or platform-only JSON</span><span aria-hidden="true">↓</span><span>Results on the original ticket</span></div><p>Financial movements are routed to ERP integration folders. Other transactions use a platform-only destination. PostgreSQL queues on GCP VMs provide checks for records already in flight, duplicates, and conflicting movements.</p></section>
+        <section id="validation"><p class="eyebrow">02 / Data integrity</p><h2>Catch problems at intake.</h2><p><strong>More than 20 documented validation rules</strong> cover file structure, identifiers, SKU mappings, stockrooms, asset lifecycle, and transaction-specific requirements.</p><ul><li><strong>Fail early:</strong> reject invalid headers before expensive lookups.</li><li><strong>Batch the work:</strong> look up unique SKUs and asset tags rather than making a request for every row.</li><li><strong>Make corrections visible:</strong> record date normalization, location formatting, legacy SKU translation, and other defined corrections.</li><li><strong>Return actionable feedback:</strong> list all file failures together with their line numbers.</li></ul></section>
+        <section id="operations"><p class="eyebrow">03 / Service reliability</p><h2>Isolate failures. Preserve a retry path.</h2><p>Parallel ticket workers use a shared rate limiter, explicit request timeouts, retry backoff, and token refresh. Per-ticket locks prevent overlapping processing; one failed ticket does not stop the batch.</p><p>If the queue database is unavailable, processing reports a system error and leaves the ticket in progress for retry. Conflicting records are reported, and identical in-flight records are skipped and noted.</p><p>Dry-run modes, a local SQLite routing backend, environment-based configuration, and explicit live-send flags support controlled testing. Per-run logs and ticket reports make outcomes attributable.</p></section>
+        <section id="tools"><p class="eyebrow">04 / Extensible tooling</p><h2>One foundation, several workflows.</h2><ul><li><strong>Bulk asset search:</strong> resolve uploaded tags or serial numbers and attach a CSV of device, model, and location details to the ticket.</li><li><strong>Physical inventory:</strong> validate device or consumable counts, update the platform, and return per-row results.</li><li><strong>Vendor purchase orders:</strong> transform orders into vendor-specific formats, authenticate through APIs, send, and record confirmation. New vendors use a transformer, send handler, and registry entry.</li></ul><div class="callout"><p><strong>Skills demonstrated by the project:</strong> Service-management integration, REST APIs, data validation, database queue controls, scheduled automation, troubleshooting, and operational auditability.</p></div></section>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer wrap"><span>Matt Laurie <span class="footer-muted">/ Systems & automation</span></span><a href="./">Back to portfolio <span aria-hidden="true">↗</span></a><span class="footer-muted">© 2026</span></footer>
+</body>
+</html>
