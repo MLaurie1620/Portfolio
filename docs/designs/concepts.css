@@ -46,3 +46,6 @@
 .case-body .knowledge-list h3{margin:0 0 10px;font-size:24px}
 .case-body .knowledge-list p{font-size:13px;line-height:1.8}
 @media(max-width:760px){.knowledge-list{grid-template-columns:1fr}}
+
+/* Keep navigation labels readable on narrow screens. */
+@media(max-width:760px){.site-header{flex-wrap:wrap}.site-header nav a{white-space:nowrap}}
