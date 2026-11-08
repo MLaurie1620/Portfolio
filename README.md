@@ -11,7 +11,8 @@ and turning failures into repeatable checks.
 ## Featured project: TurfTrigger
 
 [TurfTrigger](https://turftrigger.com) turns local weather and regional lawn-care
-rules into application timing, season plans, and notifications.
+rules into application timing, season plans, and SMS alerts. Email delivery is
+also supported.
 
 **Solo project · Development recorded since May 15, 2026**
 
@@ -19,7 +20,7 @@ I am the sole project owner and human contributor. My responsibility spans the
 product's requirements, its cloud services and integrations, validation, release
 decisions, and ongoing operation. Over nearly six months of recorded development,
 the project grew from a ZIP-code lookup into a service with regional decision
-rules, personalized plans, notifications, and operational checks.
+rules, personalized plans, SMS alerts, and operational checks.
 
 **Development approach: agentic engineering.** I used AI agents throughout
 coding, research, troubleshooting, testing, and design. My role is directing
@@ -29,6 +30,14 @@ its decisions, and its operation.
 The application combines a React interface with Python services, Firebase, and
 Google Cloud. Its operational tooling covers scheduled processing, completion
 monitoring, release traceability, permission checks, and historical replay.
+
+Its structured knowledge base includes **9 grass profiles**, **48 grass-by-zone
+plan templates**, a **265-product catalog covering 65 active-ingredient records**,
+and **25 pesticide-safety reference records** used in regression checks. Explicit
+Python rules combine local weather, lawn context, and recorded activity to decide
+when an alert is due; catalog and safety-reference counts describe supporting
+data, rather than independent alert triggers. Counts were checked on November 7,
+2026.
 
 | Area | Project example |
 |---|---|

@@ -3,7 +3,8 @@
 [← Portfolio](../README.md) · [Application](https://turftrigger.com)
 
 TurfTrigger is my personal lawn-care application. It converts weather data and
-regional rules into timing guidance, plans, and email/SMS workflows. This case
+regional rules into timing guidance, plans, and SMS alerts, with email delivery
+also supported. This case
 study follows the work of growing an initial lookup into a service that needs
 consistent decisions, reliable scheduled processing, and verifiable releases.
 
@@ -13,6 +14,8 @@ covers milestones through November 5, 2026.
 
 **Stack:** React, Vite, Python, Firebase Hosting, Firebase Authentication,
 Firestore, Google Cloud Functions, Cloud Run, Cloud Scheduler, GitHub Actions.
+
+[View the live-product screenshot gallery →](https://mlaurie1620.github.io/Portfolio/turftrigger.html#product)
 
 ## The problem and my role
 
@@ -78,6 +81,32 @@ establishes that work was recorded by May 15, not when planning first began.
 | Technical judgment | Comparing model output with observations, documenting tradeoffs, and stating what tests do not prove |
 | Operational documentation | Maintaining deployment procedures, incident context, recovery dependencies, and remaining validation tasks |
 
+## The knowledge behind SMS alerts
+
+The system combines structured lawn-care data with explicit Python rules. At
+runtime, the engine evaluates local weather, region, grass type, user preferences,
+and recorded lawn activity to determine which alerts are due. SMS delivery then
+applies channel-specific checks, including consent, local delivery time, and
+delivery state.
+
+The supporting corpus, counted from the repository on November 7, 2026, includes:
+
+| Dataset | Size | Role in the system |
+|---|---|---|
+| Grass profiles | **9** | Grass characteristics used by the engine, including season type and temperature thresholds |
+| Grass-by-zone plans | **48**, spanning USDA zones **3–10** | Baseline content for the plan builder; plan/alert consistency is checked by replay |
+| Product catalog | **265 products**, with **65 active-ingredient records** | Product information and supporting product-selection surfaces; not a set of 265 alert triggers |
+| Pesticide safety references | **25 records** | Regression checks on products and ingredients named in alert messages and the grasses those messages can reach |
+
+The counts describe different parts of the knowledge base and are not added
+together as a document total. The safety references are consulted by tests;
+live firing decisions come from the shared rule layer and runtime inputs.
+This separation keeps the source of each decision traceable.
+
+Counts were checked in `grass_profiles.json`, `free_templates.json`,
+`catalogData.json`, and `chemical_safety_pesticides.json`; their roles were checked
+against the engine, plan builder, and product-safety tests.
+
 ## Architecture
 
 ```mermaid
@@ -89,7 +118,7 @@ flowchart TD
     Weather[External weather data] --> Refresh[Scheduled weather refresh]
     Scheduler[Cloud Scheduler] --> Refresh
     Scheduler --> Engine[Rules, plans and alerts]
-    Scheduler --> Delivery[Email and SMS processing]
+    Scheduler --> Delivery[SMS alerts and email delivery]
     Refresh --> DB
     API --> DB
     DB --> Engine

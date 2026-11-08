@@ -8,3 +8,34 @@
 @media(max-width:760px){.wrap{width:calc(100% - 40px)}.site-header{padding-block:21px;gap:16px}.identity{font-size:14px;gap:10px}.monogram{width:39px;height:42px;font-size:14px}.identity-sub{font-size:8px}nav{gap:17px;font-size:11px}nav .nav-github{display:none}.hero{padding-top:48px}.hero .eyebrow{font-size:9px;letter-spacing:.06em}.hero h1{font-size:clamp(40px,7.5vw,58px);margin-top:23px}.hero-bottom{align-items:flex-start;flex-direction:column;gap:23px;padding-bottom:32px}.hero-bottom p{font-size:15px;max-width:520px}.button{font-size:12px;padding:13px 18px}.discipline-line{gap:13px;flex-wrap:wrap;font-size:8px}.discipline-line span+span:before{margin-right:13px}.projects{padding-top:45px}.section-heading{align-items:flex-start;flex-direction:column;gap:15px;margin-bottom:24px}.section-heading h2{font-size:27px}.featured{grid-template-columns:1fr}.featured-copy{padding:30px}.featured h3{font-size:48px;margin-top:22px}.featured-description{max-width:none}.system-visual{margin:0 24px 24px;padding:23px}.visual-caption{margin-bottom:24px}.engine-node{font-size:17px}.flow-output div{font-size:12px}.visual-bottom{margin-top:25px}.featured-foot{padding:18px 25px;flex-direction:column;gap:10px;font-size:9px}.enterprise-project{grid-template-columns:30px 1fr;padding-block:34px;gap:14px}.project-number{font-size:16px}.enterprise-copy h3{font-size:25px}.enterprise-copy h3 br{display:none}.enterprise-map{grid-column:2;max-width:350px;margin-top:16px;align-items:stretch}.enterprise-map .map-link{text-align:center}.enterprise-map p{text-align:center}.approach{padding-block:48px}.approach .section-heading h2{font-size:32px;width:auto}.approach-grid{grid-template-columns:1fr;gap:28px;margin-top:28px}.approach-grid h3{margin-top:12px}.approach-grid p{margin-top:10px}.closing{grid-template-columns:1fr;gap:27px;padding-block:34px}.closing h2{font-size:32px}.closing>div:last-child{margin:0;max-width:480px}.site-footer{flex-wrap:wrap;font-size:10px;padding-block:25px}.site-footer .footer-muted{display:none}.case-hero{padding-block:35px}.case-hero h1{font-size:45px}.case-intro{font-size:17px}.case-meta{grid-template-columns:1fr}.case-meta div{padding:13px 0}.case-meta div+div{border-top:1px solid var(--line)}.case-layout{grid-template-columns:1fr;gap:10px;padding-bottom:35px}.case-nav{position:static;display:flex;flex-wrap:wrap;gap:0 18px;padding-bottom:20px}.case-nav p{width:100%;margin-bottom:8px}.case-nav a{font-size:11px;padding-block:6px}.case-body section{padding-block:27px}.case-body h2{font-size:27px}.timeline li{grid-template-columns:70px 1fr;gap:12px}.case-body pre{padding:16px;font-size:10px}.case-links{gap:12px}.case-links .button{width:100%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
 @media print{body{background:white;color:black}.site-header nav,.case-nav,.skip-link,.site-footer,.case-links{display:none}.wrap{width:100%}.case-layout{display:block}.case-body{max-width:none}.case-body section{break-inside:avoid}.case-body pre{white-space:pre-wrap;color:black;background:#eee}.button{display:none}.featured{color:black;background:#eee}.system-visual{display:none}.featured{display:block}.featured-copy p,.featured-copy .eyebrow,.tags span,.featured-foot{color:black}.hero{padding-top:20px}a{text-decoration:underline}.case-hero h1{font-size:38px}.case-meta{margin-top:18px}}
+
+/* Product screenshots: captured public interfaces, with full-size links. */
+.product-preview{margin:32px 32px 32px 0;padding:25px;background:#1c473b;display:flex;flex-direction:column;justify-content:center;min-width:0;border:1px solid #50706466}
+.product-preview .visual-caption{margin-bottom:23px}
+.product-preview>a{display:block;border:1px solid #6b8871;overflow:hidden;box-shadow:0 18px 35px #071e2633}
+.product-preview img{display:block;width:100%;height:auto;transition:transform .25s}
+.product-preview>a:hover img{transform:scale(1.015)}
+.product-preview figcaption{display:flex;flex-direction:column;gap:15px;margin-top:24px;font-size:13px;line-height:1.7;color:#d5e1d6}
+.product-preview figcaption>a{font:10px/1.7 var(--mono);color:var(--lime)}
+.screenshot-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px 22px;margin-top:25px}
+.screenshot-grid figure{margin:0;min-width:0}
+.screenshot-grid .screenshot-wide{grid-column:1/-1}
+.screenshot-grid figure>a{display:block;border:1px solid #cdd3c3;background:#eceee2;overflow:hidden}
+.screenshot-grid img{display:block;width:100%;height:auto}
+.screenshot-grid figure>a:hover{outline:2px solid #6b8255;outline-offset:3px}
+.screenshot-grid figcaption{padding-top:14px}
+.screenshot-grid figcaption strong{display:block;font-size:14px;line-height:1.5;letter-spacing:-.02em}
+.screenshot-grid figcaption>span{display:block;font-size:12px;line-height:1.8;color:var(--muted);margin-top:5px}
+.screenshot-grid figcaption>a{display:inline-block;font:10px/1.7 var(--mono);margin-top:10px;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:1000px){.product-preview{margin:24px 24px 24px 0;padding:20px}}
+@media(max-width:760px){.product-preview{margin:0 24px 24px;padding:20px}.product-preview figcaption{margin-top:17px}.screenshot-grid{grid-template-columns:1fr;gap:26px}.screenshot-grid .screenshot-wide{grid-column:auto}}
+@media print{.product-preview{display:block;margin:20px;color:black}.product-preview figcaption,.product-preview figcaption>a{color:black}.screenshot-grid figure{break-inside:avoid}}
+
+.corpus-summary{color:#c5d3c8;font-size:12px;line-height:1.8;margin-top:14px;max-width:380px}
+.corpus-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:26px 0}
+.corpus-grid>div{display:flex;flex-direction:column;padding:20px 15px;background:#e9eddf;border-top:2px solid #6b8255}
+.corpus-grid dt{font:9px/1.6 var(--mono);text-transform:uppercase;letter-spacing:.04em;min-height:30px}
+.corpus-grid dd{margin:7px 0;font-size:42px;font-weight:700;letter-spacing:-.06em;line-height:1.2;color:var(--green)}
+.corpus-grid dd.corpus-detail{font-size:11px;line-height:1.7;font-weight:400;letter-spacing:normal;margin:0;color:var(--muted)}
+.case-body .corpus-note{font:10px/1.9 var(--mono);color:var(--muted);margin-top:22px}
+@media(max-width:760px){.corpus-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.corpus-grid dt{min-height:0}.corpus-summary{max-width:none}}

@@ -1,0 +1,35 @@
+[
+  {
+    "file": "turftrigger-home.jpg",
+    "source": "https://turftrigger.com/",
+    "captured_date": "2026-11-07",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "state": "Public homepage before a ZIP lookup",
+    "capture": "Playwright in an isolated signed-out browser; screenshot content unchanged"
+  },
+  {
+    "file": "turftrigger-catalog.jpg",
+    "source": "https://turftrigger.com/chemicals",
+    "captured_date": "2026-11-07",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "state": "Search query Scotts; scrolled to the first matching product",
+    "capture": "Playwright in an isolated signed-out browser; screenshot content unchanged"
+  },
+  {
+    "file": "turftrigger-schedule.jpg",
+    "source": "https://turftrigger.com/lawn-care-schedule/bermuda-grass-zone-7",
+    "captured_date": "2026-11-07",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "state": "March and April expanded; scrolled to the month-by-month calendar",
+    "capture": "Playwright in an isolated signed-out browser; screenshot content unchanged"
+  }
+]
